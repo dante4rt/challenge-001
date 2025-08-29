@@ -47,7 +47,7 @@ export const AddressInfoDropdown = ({ address, ensAvatar, displayName, onSwitchA
       <details ref={dropdownRef} className="gradient-border rounded-full inline-block dropdown dropdown-end leading-3">
         <summary
           tabIndex={0}
-          className="bg-base-100 rounded-full flex items-center px-4 py-2 shadow-md dropdown-toggle gap-0 !h-auto"
+          className="bg-base-100 rounded-full flex items-center px-4 py-2 shadow-md dropdown-toggle gap-0 !h-auto cursor-pointer"
         >
           <BlockieAvatar address={checkSumAddress} size={30} ensImage={ensAvatar} />
           <span className="ml-2 mr-1">

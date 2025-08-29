@@ -1,6 +1,5 @@
 "use client";
 
-// @refresh reset
 import { useState } from "react";
 import { Balance } from "../Balance";
 import { AddressInfoDropdown } from "./AddressInfoDropdown";
@@ -11,8 +10,9 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Address } from "viem";
 import { useNetworkColor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
-import { saveBurnerPK } from "~~/utils/scaffold-stylus/burner";
+import { saveBurnerPK, burnerWalletId } from "~~/utils/scaffold-stylus/burner";
 import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { useConnect, useConnectors } from "wagmi";
 
 /**
  * Custom Wagmi Connect Button (watch balance + custom design)
@@ -21,10 +21,21 @@ export const RainbowKitCustomConnectButton = () => {
   const networkColor = useNetworkColor();
   const { targetNetwork } = useTargetNetwork();
   const [isBurnerModalOpen, setIsBurnerModalOpen] = useState(false);
+  const { connect } = useConnect();
+  const connectors = useConnectors();
 
   const handleBurnerWalletSelect = async (privateKey: string) => {
     saveBurnerPK({ privateKey: privateKey as `0x${string}` });
-    window.location.reload();
+    const burnerConnector = connectors.find(connector => connector.id === burnerWalletId);
+
+    if (burnerConnector) {
+      try {
+        await connect({ connector: burnerConnector });
+        setIsBurnerModalOpen(false);
+      } catch (error) {
+        console.error("Failed to connect to burner wallet:", error);
+      }
+    }
   };
 
   return (
