@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { Address, createPublicClient, http, toHex } from "viem";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 const publicClient = createPublicClient({
-  chain: arbitrumNitro,
+  chain: liskSepolia,
   transport: http(),
 });
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 type AddressLinkWrapperProps = {
   children: React.ReactNode;
@@ -20,8 +20,8 @@ export const AddressLinkWrapper = ({
   ) : (
     <Link
       href={blockExplorerAddressLink}
-      target={targetNetwork.id === arbitrumNitro.id ? undefined : "_blank"}
-      rel={targetNetwork.id === arbitrumNitro.id ? undefined : "noopener noreferrer"}
+      target={targetNetwork.id === liskSepolia.id ? undefined : "_blank"}
+      rel={targetNetwork.id === liskSepolia.id ? undefined : "noopener noreferrer"}
     >
       {children}
     </Link>

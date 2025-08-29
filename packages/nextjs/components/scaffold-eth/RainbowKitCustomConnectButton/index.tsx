@@ -11,7 +11,7 @@ import { Address } from "viem";
 import { useNetworkColor } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { saveBurnerPK, burnerWalletId } from "~~/utils/scaffold-stylus/burner";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 import { useConnect, useConnectors, useAccount, useDisconnect } from "wagmi";
 
 /**
@@ -57,7 +57,7 @@ export const RainbowKitCustomConnectButton = () => {
           const connected = mounted && account && chain;
 
           const handleConnect = () => {
-            if (targetNetwork.id === arbitrumNitro.id) {
+            if (targetNetwork.id === liskSepolia.id) {
               setIsBurnerModalOpen(true);
             } else {
               openConnectModal();

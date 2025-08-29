@@ -8,15 +8,15 @@ import { BanknotesIcon } from "@heroicons/react/24/outline";
 import { Address, AddressInput, Balance, EtherInput } from "~~/components/scaffold-eth";
 import { useTransactor } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 // Account index to use from generated arbitrum accounts.
 const FAUCET_ACCOUNT_INDEX = 0;
 
 const localWalletClient = createWalletClient({
-  account: privateKeyToAccount(arbitrumNitro.accounts[0].privateKey),
-  chain: arbitrumNitro,
-  transport: http(arbitrumNitro.rpcUrls.default.http[0]),
+  account: privateKeyToAccount(liskSepolia.accounts[0].privateKey),
+  chain: liskSepolia,
+  transport: http(liskSepolia.rpcUrls.default.http[0]),
 });
 
 /**
@@ -25,7 +25,7 @@ const localWalletClient = createWalletClient({
 export const Faucet = () => {
   const [loading, setLoading] = useState(false);
   const [inputAddress, setInputAddress] = useState<AddressType>();
-  const [faucetAddress, setFaucetAddress] = useState<AddressType>(arbitrumNitro.accounts[0].address);
+  const [faucetAddress, setFaucetAddress] = useState<AddressType>(liskSepolia.accounts[0].address);
   const [sendValue, setSendValue] = useState("");
 
   const { chain: ConnectedChain } = useAccount();
@@ -77,7 +77,7 @@ export const Faucet = () => {
   };
 
   // Render only on local chain
-  if (ConnectedChain?.id !== arbitrumNitro.id) {
+  if (ConnectedChain?.id !== liskSepolia.id) {
     return null;
   }
 

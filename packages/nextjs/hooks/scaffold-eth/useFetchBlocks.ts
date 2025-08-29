@@ -10,12 +10,12 @@ import {
   webSocket,
 } from "viem";
 import { decodeTransactionData } from "~~/utils/scaffold-eth";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 const BLOCKS_PER_PAGE = 5;
 
 export const testClient = createTestClient({
-  chain: arbitrumNitro,
+  chain: liskSepolia,
   mode: "hardhat",
   transport: webSocket("ws://127.0.0.1:8547"),
 })

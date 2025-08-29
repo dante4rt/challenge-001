@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { BlockieAvatar } from "..";
 import { useTheme } from "next-themes";
 import { useOutsideClick } from "~~/hooks/scaffold-eth/useOutsideClick";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 interface BurnerWalletModalProps {
   isOpen: boolean;
@@ -53,7 +53,7 @@ export const BurnerWalletModal = ({
         </div>
 
         <div className="space-y-2">
-          {arbitrumNitro.accounts.map(account => {
+          {liskSepolia.accounts.map(account => {
             const isCurrentAccount = currentAddress?.toLowerCase() === account.address.toLowerCase();
             const isSelected = account.address === selectedAccount;
 

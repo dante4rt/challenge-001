@@ -1,7 +1,7 @@
 import { config as dotenvConfig } from "dotenv";
 import * as path from "path";
 import * as fs from "fs";
-import { arbitrumNitro } from "../../../nextjs/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "../../../nextjs/utils/scaffold-stylus/supportedChains";
 import { DeploymentConfig, DeployOptions, DeploymentData } from "./type";
 import { getAccountAddress, getChain, getPrivateKey } from "./network";
 import { getContractNameFromCargoToml } from "./contract";
@@ -68,7 +68,7 @@ export function saveDeployment(
   deploymentInfo: DeploymentData,
 ) {
   try {
-    const chainId = config.chain?.id || arbitrumNitro.id;
+    const chainId = config.chain?.id || liskSepolia.id;
     const networkPath = path.resolve(
       config.deploymentDir,
       `${chainId}_latest.json`,

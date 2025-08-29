@@ -60,7 +60,7 @@ jobs:
       - name: Modify scaffoldConfig in Source Repository
         run: |
           cd source_repo
-          sed -i 's/targetNetworks: \[chains.arbitrumNitro\]/targetNetworks: \[chains.arbitrumSepolia\]/' packages/nextjs/scaffold.config.ts
+          sed -i 's/targetNetworks: \[chains.liskSepolia\]/targetNetworks: \[chains.arbitrumSepolia\]/' packages/nextjs/scaffold.config.ts
           cat packages/nextjs/scaffold.config.ts
 
       - name: Set up Node.js

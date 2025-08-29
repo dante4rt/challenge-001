@@ -6,7 +6,7 @@ import type { NextPage } from "next";
 import { useFetchBlocks } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { notification } from "~~/utils/scaffold-eth";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 const BlockExplorer: NextPage = () => {
   const { blocks, transactionReceipts, currentPage, totalBlocks, setCurrentPage, error } = useFetchBlocks();
@@ -15,13 +15,13 @@ const BlockExplorer: NextPage = () => {
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (targetNetwork.id !== arbitrumNitro.id) {
+    if (targetNetwork.id !== liskSepolia.id) {
       setIsLocalNetwork(false);
     }
   }, [targetNetwork.id]);
 
   useEffect(() => {
-    if (targetNetwork.id === arbitrumNitro.id && error) {
+    if (targetNetwork.id === liskSepolia.id && error) {
       setHasError(true);
     }
   }, [targetNetwork.id, error]);

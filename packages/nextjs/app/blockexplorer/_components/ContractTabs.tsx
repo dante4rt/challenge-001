@@ -8,7 +8,7 @@ import { PaginationButton } from "./PaginationButton";
 import { TransactionsTable } from "./TransactionsTable";
 import { Address, createPublicClient, http } from "viem";
 import { useFetchBlocks } from "~~/hooks/scaffold-eth";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 type AddressCodeTabProps = {
   bytecode: string;
@@ -21,7 +21,7 @@ type PageProps = {
 };
 
 const publicClient = createPublicClient({
-  chain: arbitrumNitro,
+  chain: liskSepolia,
   transport: http(),
 });
 

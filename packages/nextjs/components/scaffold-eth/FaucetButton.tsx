@@ -7,16 +7,16 @@ import { useAccount } from "wagmi";
 import { useWatchBalance } from "~~/hooks/scaffold-eth/useWatchBalance";
 import { BanknotesIcon } from "@heroicons/react/24/outline";
 import { useTransactor } from "~~/hooks/scaffold-eth";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 // Number of ETH faucet sends to an address
 const NUM_OF_ETH = "1";
 const FAUCET_ADDRESS = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266";
 
 const localWalletClient = createWalletClient({
-  account: privateKeyToAccount(arbitrumNitro.accounts[0].privateKey),
-  chain: arbitrumNitro,
-  transport: http(arbitrumNitro.rpcUrls.default.http[0]),
+  account: privateKeyToAccount(liskSepolia.accounts[0].privateKey),
+  chain: liskSepolia,
+  transport: http(liskSepolia.rpcUrls.default.http[0]),
 });
 
 /**
@@ -48,7 +48,7 @@ export const FaucetButton = () => {
   };
 
   // Render only on local chain
-  if (ConnectedChain?.id !== arbitrumNitro.id) {
+  if (ConnectedChain?.id !== liskSepolia.id) {
     return null;
   }
 

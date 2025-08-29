@@ -7,7 +7,7 @@ import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/out
 import { Faucet } from "~~/components/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { useGlobalState } from "~~/services/store/store";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 /**
  * Site footer
@@ -16,7 +16,7 @@ export const Footer = () => {
   const nativeCurrencyPrice = useGlobalState(state => state.nativeCurrency.price);
   const { targetNetwork } = useTargetNetwork();
   const { resolvedTheme } = useTheme();
-  const isLocalNetwork = targetNetwork.id === arbitrumNitro.id;
+  const isLocalNetwork = targetNetwork.id === liskSepolia.id;
 
   const isDarkMode = useMemo(() => {
     return resolvedTheme === "dark";

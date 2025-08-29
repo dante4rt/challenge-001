@@ -1,7 +1,7 @@
 import { arbitrum, arbitrumNova, arbitrumSepolia } from "viem/chains";
 import { Address, Chain } from "viem";
 import {
-  arbitrumNitro,
+  liskSepolia,
   superposition,
   eduChainTestnet,
   superpositionTestnet,
@@ -19,7 +19,7 @@ if (fs.existsSync(envPath)) {
 export const SUPPORTED_NETWORKS: Record<string, Chain> = {
   arbitrum,
   arbitrumSepolia,
-  arbitrumNitro: arbitrumNitro as Chain,
+  liskSepolia: liskSepolia as Chain,
   arbitrumNova: arbitrumNova as Chain,
   eduChainTestnet: eduChainTestnet as unknown as Chain,
   eduChain: eduChain as unknown as Chain,
@@ -30,7 +30,7 @@ export const SUPPORTED_NETWORKS: Record<string, Chain> = {
 export const ALIASES: Record<string, string> = {
   mainnet: "arbitrum",
   sepolia: "arbitrumSepolia",
-  devnet: "arbitrumNitro",
+  devnet: "liskSepolia",
   nova: "arbitrumNova",
   educhain_testnet: "educhainTestnet",
   educhain: "eduChain",

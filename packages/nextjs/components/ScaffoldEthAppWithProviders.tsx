@@ -13,14 +13,14 @@ import { Header } from "~~/components/Header";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { useInitializeNativeCurrencyPrice, useTargetNetwork } from "~~/hooks/scaffold-eth";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
-import { arbitrumNitro, initBurnerPK } from "~~/utils/scaffold-stylus";
+import { liskSepolia, initBurnerPK } from "~~/utils/scaffold-stylus";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
   const { targetNetwork } = useTargetNetwork();
 
   useEffect(() => {
-    if (targetNetwork.id === arbitrumNitro.id) {
+    if (targetNetwork.id === liskSepolia.id) {
       initBurnerPK();
     }
   }, [targetNetwork]);

@@ -10,20 +10,18 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { rainbowkitBurnerWallet } from "burner-connector";
 import * as chains from "viem/chains";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 import scaffoldConfig from "~~/scaffold.config";
 
-const { onlyLocalBurnerWallet, targetNetworks } = scaffoldConfig;
+const { targetNetworks } = scaffoldConfig;
 
 rainbowkitBurnerWallet.rpcUrls = {
-  [arbitrumNitro.id]: arbitrumNitro.rpcUrls.default.http[0],
+  [liskSepolia.id]: liskSepolia.rpcUrls.default.http[0],
 };
 
 const wallets = [
-  ...(!targetNetworks.some(network => network.id !== (arbitrumNitro as chains.Chain).id) || !onlyLocalBurnerWallet
-    ? [rainbowkitBurnerWallet]
-    : []),
+  ...(!targetNetworks.some(network => network.id !== (liskSepolia as chains.Chain).id) ? [rainbowkitBurnerWallet] : []),
   braveWallet,
   metaMaskWallet,
   walletConnectWallet,

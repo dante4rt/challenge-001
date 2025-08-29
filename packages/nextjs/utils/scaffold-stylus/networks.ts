@@ -1,6 +1,6 @@
 import * as chains from "viem/chains";
 import scaffoldConfig from "~~/scaffold.config";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 type ChainAttributes = {
   // color | [lightThemeColor, darkThemeColor]
@@ -27,7 +27,7 @@ export const getAlchemyHttpUrl = (chainId: number) => {
 };
 
 export const NETWORKS_EXTRA_DATA: Record<string, ChainAttributes> = {
-  [arbitrumNitro.id]: {
+  [liskSepolia.id]: {
     color: "#b8af0c",
   },
   [chains.mainnet.id]: {
@@ -72,7 +72,7 @@ export function getBlockExplorerTxLink(chainId: number, txnHash: string) {
  */
 export function getBlockExplorerAddressLink(network: chains.Chain, address: string) {
   const blockExplorerBaseURL = network.blockExplorers?.default?.url;
-  if (network.id === arbitrumNitro.id) {
+  if (network.id === liskSepolia.id) {
     return `/blockexplorer/address/${address}`;
   }
 

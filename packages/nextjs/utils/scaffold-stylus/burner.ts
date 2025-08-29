@@ -1,6 +1,6 @@
 import type { Hex } from "viem";
 import { generatePrivateKey } from "viem/accounts";
-import { arbitrumNitro } from "./supportedChains";
+import { liskSepolia } from "./supportedChains";
 
 const burnerStorageKey = "burnerWallet.pk";
 export const burnerWalletId = "burnerWallet" as const;
@@ -53,7 +53,7 @@ export const loadBurnerPK = ({ useSessionStorage = false }: { useSessionStorage?
  */
 export const initBurnerPK = () => {
   const currentPK = loadBurnerPK();
-  if (!arbitrumNitro.accounts.find(account => account.privateKey === currentPK)) {
-    saveBurnerPK({ privateKey: arbitrumNitro.accounts[0].privateKey });
+  if (!liskSepolia.accounts.find(account => account.privateKey === currentPK)) {
+    saveBurnerPK({ privateKey: liskSepolia.accounts[0].privateKey });
   }
 };
