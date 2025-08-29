@@ -17,7 +17,7 @@ export const RefreshButton = ({ onClick, isLoading, isDarkMode }: RefreshButtonP
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className={`
-        relative overflow-hidden px-4 py-2 rounded-lg font-medium
+        relative overflow-hidden h-[42px] px-4 py-2 rounded-lg font-medium
         transition-all duration-300 flex items-center gap-2
         ${isLoading ? "cursor-not-allowed opacity-70" : "hover:shadow-lg"}
         ${

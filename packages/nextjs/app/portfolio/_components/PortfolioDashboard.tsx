@@ -118,13 +118,13 @@ export const PortfolioDashboard = ({ isDarkMode }: PortfolioDashboardProps) => {
   }, [showBatchedComparison]);
 
   return (
-    <div className="space-y-8">
-      <div className="flex justify-between items-center">
-        <div className="flex items-center gap-4">
+    <div className="space-y-6 lg:space-y-8">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+        <div className="flex flex-row items-center gap-3 sm:gap-4 flex-wrap">
           <RefreshButton onClick={handleRefresh} isLoading={isRefreshing} isDarkMode={isDarkMode} />
           <button
             onClick={toggleComparison}
-            className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+            className={`h-[42px] px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base flex items-center ${
               showBatchedComparison
                 ? "bg-blue-500 text-white shadow-lg"
                 : isDarkMode
@@ -132,17 +132,19 @@ export const PortfolioDashboard = ({ isDarkMode }: PortfolioDashboardProps) => {
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
           >
-            {showBatchedComparison ? "Hide" : "Show"} Performance
+            <span className="hidden sm:inline">{showBatchedComparison ? "Hide" : "Show"} Performance</span>
+            <span className="sm:hidden">{showBatchedComparison ? "Hide" : "Show"} Performance</span>
           </button>
         </div>
 
         {address && (
           <div
-            className={`text-sm px-3 py-1 rounded-full ${
+            className={`h-[42px] flex items-center text-xs sm:text-sm px-3 py-2 rounded-full ${
               isDarkMode ? "bg-gray-800 text-gray-300" : "bg-gray-100 text-gray-600"
             }`}
           >
-            Connected: {address.slice(0, 6)}...{address.slice(-4)}
+            <span className="hidden sm:inline">Connected: </span>
+            {address.slice(0, 6)}...{address.slice(-4)}
           </div>
         )}
       </div>
@@ -162,7 +164,7 @@ export const PortfolioDashboard = ({ isDarkMode }: PortfolioDashboardProps) => {
 
       <TotalValueCard totalValue={totalPortfolioValue} isLoading={isLoading} isDarkMode={isDarkMode} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
         <TokenCard
           token={{
             address: "ETH",
@@ -193,15 +195,15 @@ export const PortfolioDashboard = ({ isDarkMode }: PortfolioDashboardProps) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`text-center p-8 rounded-xl border-2 border-dashed ${
+          className={`text-center p-6 sm:p-8 rounded-xl border-2 border-dashed ${
             isDarkMode ? "border-gray-700 text-gray-400" : "border-gray-300 text-gray-500"
           }`}
         >
-          <div className="flex items-center justify-center w-16 h-16 mb-4 mx-auto">
-            <LinkIcon className={`w-16 h-16 ${isDarkMode ? "text-gray-600" : "text-gray-400"}`} />
+          <div className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 mb-4 mx-auto">
+            <LinkIcon className={`w-12 h-12 sm:w-16 sm:h-16 ${isDarkMode ? "text-gray-600" : "text-gray-400"}`} />
           </div>
-          <h3 className="text-xl font-semibold mb-2">Connect Your Wallet</h3>
-          <p>Connect your wallet to view your portfolio balances and values</p>
+          <h3 className="text-lg sm:text-xl font-semibold mb-2">Connect Your Wallet</h3>
+          <p className="text-sm sm:text-base">Connect your wallet to view your portfolio balances and values</p>
         </motion.div>
       )}
     </div>

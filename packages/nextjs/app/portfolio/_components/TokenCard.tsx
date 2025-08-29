@@ -77,7 +77,7 @@ export const TokenCard = ({ token, balance, price, isLoading, isDarkMode }: Toke
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
       className={`
-        relative rounded-xl p-6 border transition-all duration-200
+        relative rounded-xl p-4 sm:p-6 border transition-all duration-200
         ${
           isDarkMode
             ? "bg-gray-800/50 border-gray-700 hover:border-gray-600 hover:bg-gray-800/70"
@@ -85,13 +85,15 @@ export const TokenCard = ({ token, balance, price, isLoading, isDarkMode }: Toke
         }
       `}
     >
-      <div className="space-y-4">
-        <div className="flex items-center justify-between mb-6">
+      <div className="space-y-3 sm:space-y-4">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
           <div className="flex items-center gap-2">
             {renderIcon(token.icon)}
             <div>
-              <div className={`text-lg font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>{token.symbol}</div>
-              <div className={`text-sm ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>{token.name}</div>
+              <div className={`text-base sm:text-lg font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+                {token.symbol}
+              </div>
+              <div className={`text-xs sm:text-sm ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>{token.name}</div>
             </div>
           </div>
 
@@ -99,37 +101,47 @@ export const TokenCard = ({ token, balance, price, isLoading, isDarkMode }: Toke
             {isLoading ? (
               <div className={`h-4 w-12 rounded animate-pulse ${isDarkMode ? "bg-gray-700" : "bg-gray-200"}`} />
             ) : price ? (
-              <div className={`text-sm ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>{formatPrice(price)}</div>
+              <div className={`text-xs sm:text-sm ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+                {formatPrice(price)}
+              </div>
             ) : (
-              <div className={`text-sm ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>No price</div>
+              <div className={`text-xs sm:text-sm ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>No price</div>
             )}
           </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           <div>
             <div className={`text-xs font-medium mb-1 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>BALANCE</div>
             {isLoading ? (
-              <div className={`h-7 w-24 rounded animate-pulse ${isDarkMode ? "bg-gray-700" : "bg-gray-200"}`} />
+              <div
+                className={`h-6 sm:h-7 w-20 sm:w-24 rounded animate-pulse ${isDarkMode ? "bg-gray-700" : "bg-gray-200"}`}
+              />
             ) : balance ? (
-              <div className={`text-2xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>
+              <div className={`text-xl sm:text-2xl font-bold ${isDarkMode ? "text-white" : "text-gray-900"}`}>
                 {formatBalance(balance, token.decimals)}
               </div>
             ) : (
-              <div className={`text-2xl font-bold ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>0.00</div>
+              <div className={`text-xl sm:text-2xl font-bold ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>
+                0.00
+              </div>
             )}
           </div>
 
           <div>
             <div className={`text-xs font-medium mb-1 ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>VALUE</div>
             {isLoading ? (
-              <div className={`h-6 w-20 rounded animate-pulse ${isDarkMode ? "bg-gray-700" : "bg-gray-200"}`} />
+              <div
+                className={`h-5 sm:h-6 w-16 sm:w-20 rounded animate-pulse ${isDarkMode ? "bg-gray-700" : "bg-gray-200"}`}
+              />
             ) : hasData && value > 0 ? (
-              <div className="text-lg font-semibold text-green-500">
+              <div className="text-base sm:text-lg font-semibold text-green-500">
                 ${value >= 1000 ? `${(value / 1000).toFixed(2)}K` : value.toFixed(2)}
               </div>
             ) : (
-              <div className={`text-lg font-semibold ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>$0.00</div>
+              <div className={`text-base sm:text-lg font-semibold ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>
+                $0.00
+              </div>
             )}
           </div>
         </div>
