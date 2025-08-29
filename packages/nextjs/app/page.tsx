@@ -8,6 +8,7 @@ import { Address } from "~~/components/scaffold-eth";
 import CompassIcon from "~~/icons/CompassIcon";
 import DarkBugAntIcon from "~~/icons/DarkBugAntIcon";
 import LightBugAntIcon from "~~/icons/LightBugAntIcon";
+import PortfolioIcon from "~~/icons/PortfolioIcon";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
@@ -68,7 +69,6 @@ const Home: NextPage = () => {
           }}
         >
           <div className="flex justify-center items-center h-full gap-12 flex-col sm:flex-row">
-            {/* Debug Contracts Card */}
             <Card
               icon={isDarkMode ? <DarkBugAntIcon /> : <LightBugAntIcon />}
               description={<>Tinker with your smart contract using the</>}
@@ -76,7 +76,15 @@ const Home: NextPage = () => {
               linkText="Debug Contracts"
               isDarkMode={isDarkMode}
             />
-            {/* Block Explorer Card */}
+
+            <Card
+              icon={<PortfolioIcon />}
+              description={<>Track your tokens and portfolio with the</>}
+              linkHref="/portfolio"
+              linkText="Portfolio Dashboard"
+              isDarkMode={isDarkMode}
+            />
+
             <Card
               icon={<CompassIcon />}
               description={<>Explore your local transactions with the</>}
