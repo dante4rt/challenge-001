@@ -1,6 +1,6 @@
 # 🏗 Challenge-001: Multi-Read Dashboard
 
-**Live Demo:** [https://challenge-001-portfolio.vercel.app](https://challenge-001-portfolio.vercel.app)
+**Live Demo:** [https://challenge-001-nextjs-beta.vercel.app](https://challenge-001-nextjs-beta.vercel.app)
 
 <h4 align="center">
   <a href="https://arb-stylus.github.io/scaffold-stylus-docs/">Documentation</a> |
