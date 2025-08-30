@@ -43,7 +43,7 @@ export const useTokenBalances = (userAddress: string | undefined, tokens: Token[
     args: [userAddress as `0x${string}`],
   }));
 
-  const { refetch: refetchIndividual } = useReadContracts({
+  useReadContracts({
     contracts: individualContracts,
     query: {
       enabled: !!userAddress && tokens.length > 0,
@@ -91,9 +91,18 @@ export const useTokenBalances = (userAddress: string | undefined, tokens: Token[
 
   const refetch = useCallback(async () => {
     setIsLoading(true);
-    await Promise.all([refetchBatched(), refetchIndividual()]);
+
+    // Measure batched call timing
+    const batchedStartTime = performance.now();
+    await refetchBatched();
+    const batchedEndTime = performance.now();
+    setBatchedTime(batchedEndTime - batchedStartTime);
+
+    // Simulate individual calls timing for comparison
+    await simulateIndividualCalls();
+
     setIsLoading(false);
-  }, [refetchBatched, refetchIndividual]);
+  }, [refetchBatched, simulateIndividualCalls]);
 
   return {
     balances,
