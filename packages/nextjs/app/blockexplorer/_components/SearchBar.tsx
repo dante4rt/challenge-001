@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { isAddress, isHex } from "viem";
 import { usePublicClient } from "wagmi";
-import { arbitrumNitro } from "~~/utils/scaffold-stylus/supportedChains";
+import { arbitrumSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 export const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
   const router = useRouter();
 
-  const client = usePublicClient({ chainId: arbitrumNitro.id });
+  const client = usePublicClient({ chainId: arbitrumSepolia.id });
 
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();

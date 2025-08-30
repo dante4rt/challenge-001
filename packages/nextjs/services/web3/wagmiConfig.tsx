@@ -3,7 +3,7 @@ import { Chain, createClient, fallback, http } from "viem";
 import { mainnet } from "viem/chains";
 import { createConfig } from "wagmi";
 import scaffoldConfig, { DEFAULT_ALCHEMY_API_KEY, ScaffoldConfig } from "~~/scaffold.config";
-import { liskSepolia, getAlchemyHttpUrl } from "~~/utils/scaffold-stylus";
+import { arbitrumSepolia, getAlchemyHttpUrl } from "~~/utils/scaffold-stylus";
 
 const { targetNetworks } = scaffoldConfig;
 
@@ -34,7 +34,7 @@ export const wagmiConfig = createConfig({
     return createClient({
       chain,
       transport: fallback(rpcFallbacks),
-      ...(chain.id !== (liskSepolia as Chain).id
+      ...(chain.id !== (arbitrumSepolia as Chain).id
         ? {
             pollingInterval: scaffoldConfig.pollingInterval,
           }

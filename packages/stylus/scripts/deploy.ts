@@ -29,7 +29,14 @@ export default async function deployScript(deployOptions: DeployOptions) {
   console.log(`📁 Deployment directory: ${config.deploymentDir}`);
   console.log(`\n`);
 
-  // Deploy a single contract
+  // Deploy our PortfolioReader contract
+  await deployStylusContract({
+    contract: "portfolio-reader",
+    constructorArgs: [], // No constructor arguments needed
+    ...deployOptions,
+  });
+
+  // Also deploy your-contract for completeness
   await deployStylusContract({
     contract: "your-contract",
     constructorArgs: [config.deployerAddress!],

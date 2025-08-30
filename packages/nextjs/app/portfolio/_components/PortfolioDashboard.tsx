@@ -23,32 +23,25 @@ interface Token {
 
 const DEMO_TOKENS: Token[] = [
   {
-    address: "0xA0b86a33E6441D65D5DACE1Ab4b5AAbE37b5A8b0",
-    symbol: "ARB",
-    name: "Arbitrum",
-    decimals: 18,
-    icon: "CircleStackIcon",
-  },
-  {
-    address: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
-    symbol: "USDC",
-    name: "USD Coin",
-    decimals: 6,
-    icon: "CurrencyDollarIcon",
-  },
-  {
-    address: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
-    symbol: "WETH",
-    name: "Wrapped Ethereum",
-    decimals: 18,
+    address: "0x2d5a4f5634041f50180a25f26b2a8364452e3152",
+    symbol: "AI16Z",
+    name: "ai16z",
+    decimals: 9,
     icon: "SparklesIcon",
   },
   {
-    address: "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
-    symbol: "USDT",
-    name: "Tether USD",
-    decimals: 6,
-    icon: "CheckCircleIcon",
+    address: "0x2ceaf3dc8f19fe2addb5461258a2f6bf3ab35a28",
+    symbol: "tCERO",
+    name: "Concero testnet",
+    decimals: 18,
+    icon: "CurrencyDollarIcon",
+  },
+  {
+    address: "0xe591bf0a0cf924a0674d7792db046b23cebf5f34",
+    symbol: "WETH",
+    name: "Wrapped Ether",
+    decimals: 18,
+    icon: "CircleStackIcon",
   },
 ];
 

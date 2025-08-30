@@ -15,7 +15,7 @@ import { DeployOptions } from "./utils/type";
 import { buildDeployCommand } from "./utils/command";
 import { Abi, createPublicClient, createWalletClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { liskSepolia } from "../../nextjs/utils/scaffold-stylus/supportedChains";
+import { arbitrumSepolia } from "../../nextjs/utils/scaffold-stylus/supportedChains";
 
 /**
  * Deploy a single contract using cargo stylus
@@ -89,7 +89,7 @@ export default async function deployStylusContract(
     // Call the initialize function if orbit deployment
     if (
       !!deployOptions.isOrbit &&
-      config.chain.id !== liskSepolia.id &&
+      config.chain.id !== arbitrumSepolia.id &&
       contractHasInitializeFunction(contractData)
     ) {
       const publicClient = createPublicClient({

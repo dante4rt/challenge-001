@@ -8,7 +8,7 @@ import { SwitchTheme } from "./SwitchTheme";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useOutsideClick, useTargetNetwork } from "~~/hooks/scaffold-eth";
-import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
+import { arbitrumSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 type HeaderMenuLink = {
   label: string;
@@ -65,7 +65,7 @@ export const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const { targetNetwork } = useTargetNetwork();
-  const isLocalNetwork = targetNetwork?.id === liskSepolia.id;
+  const isLocalNetwork = targetNetwork?.id === arbitrumSepolia.id;
   useOutsideClick(
     burgerMenuRef,
     useCallback(() => setIsDrawerOpen(false), []),

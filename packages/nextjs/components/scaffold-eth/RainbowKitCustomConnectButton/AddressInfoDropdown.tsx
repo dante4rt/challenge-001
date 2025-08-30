@@ -15,7 +15,7 @@ import {
 import { BlockieAvatar, isENS } from "~~/components/scaffold-eth";
 import { useCopyToClipboard, useOutsideClick } from "~~/hooks/scaffold-eth";
 import { getTargetNetworks } from "~~/utils/scaffold-stylus";
-import { liskSepolia } from "~~/utils/scaffold-stylus/supportedChains";
+import { arbitrumSepolia } from "~~/utils/scaffold-stylus/supportedChains";
 
 const allowedNetworks = getTargetNetworks();
 
@@ -84,7 +84,7 @@ export const AddressInfoDropdown = ({ address, ensAvatar, displayName, onSwitchA
               <span className="whitespace-nowrap">View QR Code</span>
             </label>
           </li>
-          {allowedNetworks.some(network => network.id === liskSepolia.id) && (
+          {allowedNetworks.some(network => network.id === arbitrumSepolia.id) && (
             <li className={selectingNetwork ? "hidden" : ""}>
               <button className="menu-item btn-sm !rounded-xl flex gap-3 py-3" type="button" onClick={onSwitchAccount}>
                 <UserCircleIcon className="h-6 w-4 ml-2 sm:ml-0" />

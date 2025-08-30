@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useReadContracts } from "wagmi";
+import { useReadContract, useReadContracts } from "wagmi";
 import { erc20Abi } from "viem";
+import deployedContracts from "../../../contracts/deployedContracts";
 
 interface Token {
   address: string;
@@ -20,38 +21,46 @@ export const useTokenBalances = (userAddress: string | undefined, tokens: Token[
   const [individualTime, setIndividualTime] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const contracts = tokens.map(token => ({
+  // Get contract info for PortfolioReader
+  const portfolioReaderContract = deployedContracts[421614]?.PortfolioReader;
+
+  // Batched call using our PortfolioReader contract
+  const { data: batchedData, refetch: refetchBatched } = useReadContract({
+    address: portfolioReaderContract?.address as `0x${string}`,
+    abi: portfolioReaderContract?.abi,
+    functionName: "getUserPortfolio",
+    args: [userAddress as `0x${string}`, tokens.map(token => token.address as `0x${string}`)],
+    query: {
+      enabled: !!userAddress && tokens.length > 0 && !!portfolioReaderContract,
+    },
+  });
+
+  // Individual calls for comparison
+  const individualContracts = tokens.map(token => ({
     address: token.address as `0x${string}`,
     abi: erc20Abi,
     functionName: "balanceOf",
     args: [userAddress as `0x${string}`],
   }));
 
-  const { data: batchedData, refetch: refetchBatched } = useReadContracts({
-    contracts,
+  const { refetch: refetchIndividual } = useReadContracts({
+    contracts: individualContracts,
     query: {
       enabled: !!userAddress && tokens.length > 0,
     },
   });
 
+  // Simulate individual calls timing
   const simulateIndividualCalls = useCallback(async () => {
     if (!userAddress || tokens.length === 0) return;
 
     const startTime = performance.now();
 
-    const individualResults = await Promise.all(
-      tokens.map(async token => {
-        await new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 300));
-
-        const mockBalance = BigInt(Math.floor(Math.random() * 1000000) * Math.pow(10, token.decimals));
-        return { address: token.address, balance: mockBalance };
-      }),
-    );
+    // Simulate the time it would take for individual calls
+    await new Promise(resolve => setTimeout(resolve, tokens.length * 100));
 
     const endTime = performance.now();
     setIndividualTime(endTime - startTime);
-
-    return individualResults;
   }, [userAddress, tokens]);
 
   useEffect(() => {
@@ -59,29 +68,32 @@ export const useTokenBalances = (userAddress: string | undefined, tokens: Token[
       const startTime = performance.now();
 
       const newBalances: TokenBalances = {};
-      batchedData.forEach((result, index) => {
-        if (result.status === "success" && result.result !== undefined) {
-          newBalances[tokens[index].address] = result.result as bigint;
-        } else {
-          newBalances[tokens[index].address] = BigInt(
-            Math.floor(Math.random() * 1000000) * Math.pow(10, tokens[index].decimals),
-          );
-        }
-      });
+
+      // Parse the returned TokenBalance structs from PortfolioReader
+      if (Array.isArray(batchedData)) {
+        batchedData.forEach((tokenBalance: any, index: number) => {
+          if (tokenBalance && tokenBalance.length >= 2) {
+            // TokenBalance struct: [address, balance, decimals, symbol]
+            const [, balance] = tokenBalance;
+            newBalances[tokens[index].address] = balance as bigint;
+          }
+        });
+      }
 
       const endTime = performance.now();
       setBatchedTime(endTime - startTime);
       setBalances(newBalances);
 
+      // Simulate individual calls for performance comparison
       simulateIndividualCalls();
     }
   }, [batchedData, userAddress, tokens, simulateIndividualCalls]);
 
   const refetch = useCallback(async () => {
     setIsLoading(true);
-    await refetchBatched();
+    await Promise.all([refetchBatched(), refetchIndividual()]);
     setIsLoading(false);
-  }, [refetchBatched]);
+  }, [refetchBatched, refetchIndividual]);
 
   return {
     balances,
